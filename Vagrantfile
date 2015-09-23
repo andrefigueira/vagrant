@@ -23,7 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider :virtualbox do |v|
     # How much RAM to give the VM (in MB)
     # -----------------------------------
-    v.customize ["modifyvm", :id, "--memory", "500"]
+    v.customize ["modifyvm", :id, "--memory", "1024"]
 
     # Uncomment the Bottom two lines to enable muli-core in the VM
     #v.customize ["modifyvm", :id, "--cpus", "2"]

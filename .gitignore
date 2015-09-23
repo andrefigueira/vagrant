@@ -6,3 +6,4 @@
 .vagrant*
 www/*
 !www/index.php
+.idea/

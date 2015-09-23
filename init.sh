@@ -77,6 +77,25 @@ echo '<VirtualHost *:80>
 </Directory>' > vagrant.conf
 
 sudo mv vagrant.conf /etc/apache2/sites-available
+
+#
+# Custom VHost
+#
+
+cd ~
+echo '<VirtualHost *:80>
+        DocumentRoot /vagrant/www/designfront.co.uk-new
+        ServerName designfront.local
+</VirtualHost>
+
+<Directory "/vagrant/www/designfront.co.uk-new">
+        Options Indexes Followsymlinks
+        AllowOverride All
+        Require all granted
+</Directory>' > designfront.conf
+
+sudo mv designfront.conf /etc/apache2/sites-available
+
 sudo a2enmod rewrite
 
 #
@@ -115,6 +134,7 @@ sudo sed -i '/\[Session\]/a session.save_path = "/tmp"' /etc/php5/apache2/php.in
 # Reload apache
 #
 sudo a2ensite vagrant
+sudo a2ensite designfront
 sudo a2dissite 000-default
 sudo service apache2 restart
 sudo service mongodb restart
