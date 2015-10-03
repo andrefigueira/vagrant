@@ -68,6 +68,7 @@ sudo mv composer.phar /usr/local/bin/composer
 cd ~
 echo '<VirtualHost *:80>
         DocumentRoot /vagrant/www
+        ServerName phalcon.local
 </VirtualHost>
 
 <Directory "/vagrant/www">
@@ -84,7 +85,7 @@ sudo mv vagrant.conf /etc/apache2/sites-available
 
 cd ~
 echo '<VirtualHost *:80>
-        DocumentRoot /vagrant/www/designfront.co.uk-new
+        DocumentRoot /vagrant/www/designfront.co.uk-new/public
         ServerName designfront.local
 </VirtualHost>
 
@@ -120,6 +121,15 @@ sudo rm -rf ~/vendor
 # Enable PHP5 Mods
 #
 sudo php5enmod phalcon curl mcrypt intl
+
+# Install Yaml
+
+echo "Installing YAML extension"
+sudo apt-get install libyaml-dev
+sudo pecl install yaml-beta
+
+sudo echo "extension=yaml.so" >> /etc/php5/apache2/php.ini
+
 
 #
 # Update PHP Error Reporting
